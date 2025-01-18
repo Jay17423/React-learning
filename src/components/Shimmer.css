@@ -1,0 +1,30 @@
+/* .shimmer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background-color: #f6f7f8;
+  border-radius: 8px;
+}
+
+.shimmer-image {
+  width: 30%;
+  height: 150px;
+  background-color: #eaeaea;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.shimmer-line {
+  width: 10%;
+  height: 16px;
+  background-color: #eaeaea;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.shimmer-title {
+  width: 10%;
+} */
