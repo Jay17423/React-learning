@@ -6,7 +6,7 @@ const Footer = () =>{
     return(
       <div>
         <h1 className="text-red-950 font-bold p-10">
-          This site is developed by @ {user.developername}
+          This site is developed by @ {user.name}
         </h1>
       </div>
     );

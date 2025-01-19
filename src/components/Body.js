@@ -24,9 +24,16 @@ const Body = () => {
   }, []);
 
   async function getResturants() {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.59080&lng=85.13480&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.87560&lng=80.91150&collection=80435&tags=layout_CCS_PureVeg&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
+    );
     const json = await data.json();
-    const restaurants = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+  
+    // Extracting cards array from the response
+    const allCards = json.data.cards;
+  
+    // Slicing the array from the 4th card (index 3) to the last card
+    const restaurants = allCards.slice(3).map((card) => card.card.card);
 
     setAllResturants(restaurants);
     setFilteredResturants(restaurants);
@@ -36,7 +43,7 @@ const Body = () => {
   console.log(online);
   if( !online){
     return (
-      <h1>You are offline please check your Interner Connection !</h1>
+      <h1>You are offline please check your Internet Connection !</h1>
     )
   }
 
@@ -68,19 +75,19 @@ const Body = () => {
         >
           Search
         </button>
-        <input value={user.name} onChange={e => setUser({
+        {/* <input value={user.name} onChange={e => setUser({
           name : e.target.value,
           email : "jay@gmail.com"
-        })}></input>
+        })}></input> */}
          
       </div>
 
       <div className="flex flex-wrap  ">
-        {filteredresturants.map((restaurant) => {
+        {Object.values(filteredresturants).map((restaurant) => {
           return (
             <Link key={restaurant.info.id} to={`/resturant/${restaurant.info.id}`}>
-              <RestrauntCard {...restaurant.info} user = { user } />
-            </Link>
+              <RestrauntCard {...restaurant.info}  user = { user } />
+             </Link>
           );
         })}
       </div>

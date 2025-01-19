@@ -34,7 +34,7 @@ const Header = () =>{
        setIsUserLoggedIn(!isUserLoggedIn) 
       }}>{isUserLoggedIn ? "Login" : "Logout"}</button>
      
-      { <h2 className=" p-10 text-red-600 font-bold ">{user.name}</h2>}
+      {/* { <h2 className=" p-10 text-red-600 font-bold ">{user.name}</h2>} */}
       {/* { <h2 className="p-10 text-red-600 font-bol">{user.email}</h2> } */}
      
     </div>

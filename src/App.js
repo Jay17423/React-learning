@@ -10,6 +10,9 @@ import Contact from "./components/Contact";
 import ResturantMenu from "./ResturantMenu";
 import Shimmer from "./components/Shimmer"
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+
     
 
    const Instamart = lazy( () => import("./components/Instamart"));
@@ -20,6 +23,7 @@ import UserContext from "./utils/UserContext";
     });
    return (
     <>
+    <Provider store = {store}>
     <UserContext.Provider value = {{
       user : user,
       setUser : setUser,
@@ -28,6 +32,7 @@ import UserContext from "./utils/UserContext";
     <Outlet/>
     <Footer/> 
     </UserContext.Provider>
+    </Provider>
     </>
    ) 
   }
