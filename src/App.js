@@ -12,6 +12,7 @@ import Shimmer from "./components/Shimmer"
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import store from "./utils/store";
+import Cart from "./components/Cart";
 
     
 
@@ -68,7 +69,11 @@ import store from "./utils/store";
           element:<Suspense fallback={<Shimmer/>}>
                   <Instamart/>
                   </Suspense> 
-        }     
+        },
+        {
+          path:"/cart",
+          element:<Cart></Cart>
+        }
       ]
     },
    

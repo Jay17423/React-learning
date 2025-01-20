@@ -1,19 +1,27 @@
 import React from "react";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const IMG_CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/"
 
 const MenuItem = ({ name, price, imageId, isVeg, id }) => {
+const dispatch = useDispatch();
+const addFoodItem = () =>{
+  dispatch(addItem({ name, price, imageId}))
+}
+
+
   return (
     <div className="flex items-center p-4 border border-gray-200 rounded-lg shadow-xl">
    
       <div className="flex-1">
      
-        <div className="flex items-center mb-2">
-          {/* <div
+        {/* <div className="flex items-center mb-2">
+          <div
             className={`w-4 h-4 rounded-full border ${isVeg ? "border-green-600" : "border-red-600"}`}
-          ></div> */}
+          ></div>
           <span className="sr-only">{isVeg ? "Veg" : "Non-Veg"}</span>
-        </div>
+        </div> */}
 
       
         <h2 className="text-lg font-semibold text-gray-800">{name}</h2>
@@ -34,7 +42,9 @@ const MenuItem = ({ name, price, imageId, isVeg, id }) => {
           />
           
         )}
-      <button className="flex  px-4 mt-[-15px] py-1 text-white bg-purple-900 hover:bg-green-600 rounded-md font-medium ">
+      <button className="flex  px-4 mt-[-15px] py-1 text-white bg-purple-900 hover:bg-green-600 rounded-md font-medium "
+        onClick={() => addFoodItem({name,price,imageId})}
+      >
             ADD
           </button>
         </div>
