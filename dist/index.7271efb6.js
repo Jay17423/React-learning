@@ -29520,7 +29520,7 @@ const cartSlice = (0, _toolkit.createSlice)({
 const { addItem, clearCart, removeItem } = cartSlice.actions;
 exports.default = cartSlice.reducer;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@reduxjs/toolkit":"fuua8"}],"fuua8":[function(require,module,exports,__globalThis) {
+},{"@reduxjs/toolkit":"fuua8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fuua8":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ReducerType", ()=>ReducerType);
@@ -33580,7 +33580,7 @@ const store = (0, _toolkit.configureStore)({
 });
 exports.default = store;
 
-},{"@reduxjs/toolkit":"fuua8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./cartSlice":"5RXlr"}],"h8J3U":[function(require,module,exports,__globalThis) {
+},{"@reduxjs/toolkit":"fuua8","./cartSlice":"5RXlr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h8J3U":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$ad24 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -33595,36 +33595,36 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRedux = require("react-redux");
 var _cartItem = require("./CartItem");
 var _cartItemDefault = parcelHelpers.interopDefault(_cartItem);
+var _cartSlice = require("../utils/cartSlice");
 var _s = $RefreshSig$();
 const Cart = ()=>{
     _s();
     const cartItems = (0, _reactRedux.useSelector)((store)=>store.cart.item);
+    const dispatch = (0, _reactRedux.useDispatch)();
+    const [totalPrice, setTotalPrice] = (0, _react.useState)(cartItems.reduce((total, item)=>total + item.price / 100 * (item.quantity || 1), 0));
+    const isCartEmpty = cartItems.length === 0;
+    const clearCartItem = ()=>{
+        dispatch((0, _cartSlice.clearCart)());
+    };
+    const updateTotalPrice = (priceChange)=>{
+        setTotalPrice((prevTotal)=>prevTotal + priceChange);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "flex flex-col items-center bg-gray-50 min-h-screen p-6",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "w-full max-w-3xl bg-white p-4 rounded-lg shadow-md mb-6",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                        className: "text-xl font-bold text-gray-800",
-                        children: "Namaste Lucknow"
-                    }, void 0, false, {
-                        fileName: "src/components/Cart.js",
-                        lineNumber: 9,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        className: "text-gray-500",
-                        children: "Gomti Nagar"
-                    }, void 0, false, {
-                        fileName: "src/components/Cart.js",
-                        lineNumber: 10,
-                        columnNumber: 9
-                    }, undefined)
-                ]
-            }, void 0, true, {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    className: "text-xl font-bold text-gray-800 text-center",
+                    children: "Your Cart"
+                }, void 0, false, {
+                    fileName: "src/components/Cart.js",
+                    lineNumber: 19,
+                    columnNumber: 9
+                }, undefined)
+            }, void 0, false, {
                 fileName: "src/components/Cart.js",
-                lineNumber: 8,
+                lineNumber: 18,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -33634,53 +33634,76 @@ const Cart = ()=>{
                             name: item.name,
                             price: item.price,
                             imageId: item.imageId,
-                            quantity: item.quantity || 1
+                            quantity: item.quantity || 1,
+                            updateTotalPrice: updateTotalPrice
                         }, index, false, {
                             fileName: "src/components/Cart.js",
-                            lineNumber: 14,
+                            lineNumber: 23,
                             columnNumber: 64
                         }, undefined)) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         className: "text-center text-gray-500",
                         children: "Your cart is empty!"
                     }, void 0, false, {
                         fileName: "src/components/Cart.js",
-                        lineNumber: 14,
-                        columnNumber: 181
+                        lineNumber: 23,
+                        columnNumber: 217
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "mt-4 border-t pt-4",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                            className: "text-lg font-semibold text-gray-700 text-right",
-                            children: [
-                                "Total: \u20B9",
-                                cartItems.reduce((total, item)=>total + item.price / 100 * (item.quantity || 1), 0).toFixed(2)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/Cart.js",
-                            lineNumber: 17,
-                            columnNumber: 11
-                        }, undefined)
-                    }, void 0, false, {
+                    !isCartEmpty && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "mt-4 border-t pt-4 flex items-center justify-between",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                className: "bg-purple-900 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-400 transition duration-200",
+                                children: "Place Order"
+                            }, void 0, false, {
+                                fileName: "src/components/Cart.js",
+                                lineNumber: 27,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                className: "bg-purple-900 text-white font-semibold py-2 px-6 rounded-md hover:bg-red-700 transition duration-200",
+                                onClick: ()=>{
+                                    clearCartItem();
+                                },
+                                children: "Clear Cart"
+                            }, void 0, false, {
+                                fileName: "src/components/Cart.js",
+                                lineNumber: 32,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "text-lg font-semibold text-gray-700",
+                                children: [
+                                    "Total: \u20B9",
+                                    totalPrice.toFixed(2)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/Cart.js",
+                                lineNumber: 39,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/Cart.js",
-                        lineNumber: 16,
-                        columnNumber: 9
+                        lineNumber: 25,
+                        columnNumber: 26
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Cart.js",
-                lineNumber: 13,
+                lineNumber: 22,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Cart.js",
-        lineNumber: 6,
+        lineNumber: 17,
         columnNumber: 10
     }, undefined);
 };
-_s(Cart, "sOGYiwJY+kD+ABxufRt7JbvggIE=", false, function() {
+_s(Cart, "xa2MMIWOv5j7ECrNJOYHoe8h46Q=", false, function() {
     return [
-        (0, _reactRedux.useSelector)
+        (0, _reactRedux.useSelector),
+        (0, _reactRedux.useDispatch)
     ];
 });
 _c = Cart;
@@ -33693,7 +33716,7 @@ $RefreshReg$(_c, "Cart");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-redux":"62sf7","./CartItem":"h762k"}],"h762k":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","./CartItem":"h762k","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../utils/cartSlice":"5RXlr"}],"h762k":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$48cf = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -33706,12 +33729,16 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
-const CartItem = ({ name, price, imageId, quantity })=>{
+const CartItem = ({ name, price, imageId, quantity, updateTotalPrice })=>{
     _s();
     const IMG_CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
-    const [quantityCount, setQuantityCount] = (0, _react.useState)(1);
-    const [totalprice, setTotalPrice] = (0, _react.useState)(price);
-    // console.log(totalprice);
+    const [quantityCount, setQuantityCount] = (0, _react.useState)(quantity);
+    const handleQuantityChange = (change)=>{
+        const newQuantity = quantityCount + change;
+        if (newQuantity < 0) return;
+        setQuantityCount(newQuantity);
+        updateTotalPrice(price / 100 * change);
+    };
     if (quantityCount === 0) return null;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "flex items-center justify-between bg-white border border-gray-200 rounded-lg shadow-md p-4 mb-4",
@@ -33725,7 +33752,7 @@ const CartItem = ({ name, price, imageId, quantity })=>{
                         className: "w-20 h-20 object-cover rounded-md"
                     }, void 0, false, {
                         fileName: "src/components/CartItem.js",
-                        lineNumber: 16,
+                        lineNumber: 21,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -33735,7 +33762,7 @@ const CartItem = ({ name, price, imageId, quantity })=>{
                                 children: name
                             }, void 0, false, {
                                 fileName: "src/components/CartItem.js",
-                                lineNumber: 19,
+                                lineNumber: 24,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -33746,19 +33773,19 @@ const CartItem = ({ name, price, imageId, quantity })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/CartItem.js",
-                                lineNumber: 21,
+                                lineNumber: 26,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/CartItem.js",
-                        lineNumber: 17,
+                        lineNumber: 22,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/CartItem.js",
-                lineNumber: 15,
+                lineNumber: 20,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -33769,15 +33796,11 @@ const CartItem = ({ name, price, imageId, quantity })=>{
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                 className: "px-3 py-1 text-gray-700 font-medium hover:bg-gray-100",
-                                onClick: ()=>{
-                                    let count = 0;
-                                    count--;
-                                    setQuantityCount(eval(quantityCount + count));
-                                },
+                                onClick: ()=>handleQuantityChange(-1),
                                 children: "-"
                             }, void 0, false, {
                                 fileName: "src/components/CartItem.js",
-                                lineNumber: 29,
+                                lineNumber: 34,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -33785,26 +33808,22 @@ const CartItem = ({ name, price, imageId, quantity })=>{
                                 children: quantityCount
                             }, void 0, false, {
                                 fileName: "src/components/CartItem.js",
-                                lineNumber: 34,
+                                lineNumber: 37,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                 className: "px-3 py-1 text-gray-700 font-medium hover:bg-gray-100",
-                                onClick: ()=>{
-                                    let count = 0;
-                                    count++;
-                                    setQuantityCount(eval(quantityCount + count));
-                                },
+                                onClick: ()=>handleQuantityChange(1),
                                 children: "+"
                             }, void 0, false, {
                                 fileName: "src/components/CartItem.js",
-                                lineNumber: 35,
+                                lineNumber: 38,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/CartItem.js",
-                        lineNumber: 28,
+                        lineNumber: 33,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -33815,23 +33834,23 @@ const CartItem = ({ name, price, imageId, quantity })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/CartItem.js",
-                        lineNumber: 41,
+                        lineNumber: 43,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/CartItem.js",
-                lineNumber: 27,
+                lineNumber: 32,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/CartItem.js",
-        lineNumber: 13,
+        lineNumber: 18,
         columnNumber: 10
     }, undefined);
 };
-_s(CartItem, "1lMfzVoEbo5GaRry8QUCKwf/DfY=");
+_s(CartItem, "SI2vtVNA8Pu/PWRL7vuLdnA0sBg=");
 _c = CartItem;
 exports.default = CartItem;
 var _c;
