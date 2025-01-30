@@ -31,6 +31,8 @@ const Body = () => {
   
     // Extracting cards array from the response
     const allCards = json.data.cards;
+    console.log(allCards);
+    
   
     // Slicing the array from the 4th card (index 3) to the last card
     const restaurants = allCards.slice(3).map((card) => card.card.card);

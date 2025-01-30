@@ -1,26 +1,27 @@
 import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
-import UserContext from "../utils/UserContext";
+// import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import Logo from "../Asset/utensil.png"
 
 const Title = () =>{
   return (
-    <a href="/">
-      <img className="h-28 p-2"  src="https://cdn.pnggallery.com/wp-content/uploads/swiggy-logo-01.png"></img>
-    </a>
+  <a href="/" className="flex items-center">
+    <img className="h-24 p-2" src={Logo} alt="Logo" />
+    <p className="ml-2 text-4xl font-bold font-serif text-[#FEA116] " >College Bites</p>
+  </a>
   )
 };
 
 const Header = () =>{
-  const {user} = useContext(UserContext);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState("false");
   const isOnline = useOnline();
   const cartItems = useSelector(store => store.cart.item);
-  console.log(cartItems);
+
   
   return(
-    <div className="flex justify-between space-x-3 bg-pink-100 shadow-lg">
+    <div className="flex justify-between space-x-3 shadow-lg">
     <Title/>
      <div className="flex justify-between  space-x-5 mt-10">
      <Link to="/">Home</Link>
