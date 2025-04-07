@@ -1,8 +1,7 @@
-import { useState, useEffect,useContext } from "react";
-// import { resturantData } from "../config";
+import { useState, useEffect, useContext } from "react";
 import RestrauntCard from "./RestrauntCard";
 import Shimmer from "./Shimmer";
-import { Link } from "react-router-dom"; // Import Link component
+import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
 
@@ -16,8 +15,7 @@ const Body = () => {
   const [allresturants, setAllResturants] = useState([]);
   const [filteredresturants, setFilteredResturants] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const {user,setUser} = useContext(UserContext);
-
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getResturants();
@@ -28,13 +26,7 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.87560&lng=80.91150&collection=80435&tags=layout_CCS_PureVeg&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
     );
     const json = await data.json();
-  
-    // Extracting cards array from the response
     const allCards = json.data.cards;
-    console.log(allCards);
-    
-  
-    // Slicing the array from the 4th card (index 3) to the last card
     const restaurants = allCards.slice(3).map((card) => card.card.card);
 
     setAllResturants(restaurants);
@@ -42,56 +34,57 @@ const Body = () => {
   }
 
   const online = useOnline();
-  console.log(online);
-  if( !online){
+
+  if (!online) {
     return (
-      <h1>You are offline please check your Internet Connection !</h1>
-    )
+      <h1 className="text-center mt-10 text-red-600 font-bold text-xl">
+        You are offline. Please check your internet connection!
+      </h1>
+    );
   }
 
   return allresturants.length === 0 ? (
     <Shimmer />
   ) : (
     <>
-      <div className="p-5 mt-2 bg-pink-100 ">
-        <input
-          type="text"
-          placeholder="Search"
-          className="search-input"
-          value={searchText}
-          onChange={(e) => {
-            const text = e.target.value;
-            setSearchText(text);
-            if (text === "") {
-              setFilteredResturants(allresturants);
-            }
-          }}
-        />
+      {/* Search Bar Section with Glassmorphism */}
+      <div className="p-6 mt-6 mx-6 bg-white/30 backdrop-blur-md shadow-xl rounded-2xl border border-white border-opacity-20">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <input
+            type="text"
+            placeholder="Search Restaurants..."
+            className="w-full sm:w-80 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FEA116] shadow-md bg-white/60 backdrop-blur-md placeholder-gray-500"
+            value={searchText}
+            onChange={(e) => {
+              const text = e.target.value;
+              setSearchText(text);
+              if (text === "") {
+                setFilteredResturants(allresturants);
+              }
+            }}
+          />
 
-        <button
-          className=" p-2 m-3 bg-purple-900 text-white  rounded-md w-20"
-          onClick={() => {
-            const data = filterData(searchText, allresturants);
-            setFilteredResturants(data);
-          }}
-        >
-          Search
-        </button>
-        {/* <input value={user.name} onChange={e => setUser({
-          name : e.target.value,
-          email : "jay@gmail.com"
-        })}></input> */}
-         
+          <button
+            className="bg-[#FEA116] hover:bg-[#e48f10] text-white font-semibold px-6 py-2 rounded-lg shadow-md transition"
+            onClick={() => {
+              const data = filterData(searchText, allresturants);
+              setFilteredResturants(data);
+            }}
+          >
+            Search
+          </button>
+        </div>
       </div>
 
-      <div className="flex flex-wrap  ">
-        {Object.values(filteredresturants).map((restaurant) => {
-          return (
-            <Link key={restaurant.info.id} to={`/resturant/${restaurant.info.id}`}>
-              <RestrauntCard {...restaurant.info}  user = { user } />
-             </Link>
-          );
-        })}
+      {/* Restaurant Cards Section with Glassmorphic Effect */}
+      <div className="flex flex-wrap justify-center gap-6 mt-10 px-4">
+        {filteredresturants.map((restaurant) => (
+          <Link key={restaurant.info.id} to={`/resturant/${restaurant.info.id}`}>
+            <div className="bg-white/30 backdrop-blur-md shadow-xl rounded-2xl border border-white border-opacity-20 p-4">
+              <RestrauntCard {...restaurant.info} user={user} />
+            </div>
+          </Link>
+        ))}
       </div>
     </>
   );

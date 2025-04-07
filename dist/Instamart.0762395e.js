@@ -631,30 +631,33 @@ var _react = require("react");
 var _s = $RefreshSig$();
 const Section = ({ title, description, isVisible, setIsVisible })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "border border-black p-2 m-2",
+        className: "border border-black p-4 m-4 rounded-lg shadow-md bg-yellow-50",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                className: "font-bold text-xl",
-                children: title
-            }, void 0, false, {
+                className: "font-bold text-xl flex items-center gap-2",
+                children: [
+                    title,
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        className: "text-blue-600 underline ml-auto",
+                        onClick: ()=>setIsVisible(!isVisible),
+                        children: isVisible ? "Hide" : "Show"
+                    }, void 0, false, {
+                        fileName: "src/components/Instamart.js",
+                        lineNumber: 11,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/Instamart.js",
                 lineNumber: 9,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                className: "cursor-pointer underline",
-                onClick: ()=>setIsVisible(!isVisible),
-                children: isVisible ? "Hide" : "Show"
-            }, void 0, false, {
-                fileName: "src/components/Instamart.js",
-                lineNumber: 10,
-                columnNumber: 7
-            }, undefined),
             isVisible && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                className: "mt-2 text-gray-700",
                 children: description
             }, void 0, false, {
                 fileName: "src/components/Instamart.js",
-                lineNumber: 13,
+                lineNumber: 15,
                 columnNumber: 21
             }, undefined)
         ]
@@ -669,51 +672,58 @@ const Instamart = ()=>{
     _s();
     const [visibleSection, setVisibleSection] = (0, _react.useState)("about");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "max-w-3xl mx-auto p-6",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                className: "text-3xl p-2 m-2 font-bold",
-                children: "Instamart"
-            }, void 0, false, {
-                fileName: "src/components/Instamart.js",
-                lineNumber: 20,
-                columnNumber: 6
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Section, {
-                title: "About Instamart",
-                description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-                isVisible: visibleSection === "about",
-                setIsVisible: ()=>// setVisibleSection("about") Due to this hide button was not working so below line fix it
-                    setVisibleSection(visibleSection === "about" ? false : "about"),
-                children: " "
+                className: "text-4xl font-extrabold text-center text-orange-600 mb-6",
+                children: "\uD83D\uDED2 Instamart - Coming Soon! \uD83D\uDE80"
             }, void 0, false, {
                 fileName: "src/components/Instamart.js",
                 lineNumber: 21,
-                columnNumber: 6
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                className: "text-center text-gray-600 mb-6",
+                children: "We're working hard to bring Instamart to life. Check out what\u2019s coming \uD83D\uDC47"
+            }, void 0, false, {
+                fileName: "src/components/Instamart.js",
+                lineNumber: 25,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Section, {
-                title: "About Instamart Team",
-                description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+                title: "\uD83D\uDCE6 About Instamart",
+                description: "Instamart is your ultra-fast online delivery partner for groceries, essentials, and much more! \uD83E\uDD66\uD83E\uDD5B\uD83C\uDF5E Get ready for a smarter, faster shopping experience. We're gearing up to change the game!",
+                isVisible: visibleSection === "about",
+                setIsVisible: ()=>setVisibleSection(visibleSection === "about" ? false : "about")
+            }, void 0, false, {
+                fileName: "src/components/Instamart.js",
+                lineNumber: 29,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Section, {
+                title: "\uD83D\uDC68\u200D\uD83D\uDCBB Meet the Instamart Team",
+                description: "Behind the scenes, we\u2019ve got a superhero team of developers, designers, and dreamers! \uD83D\uDCBB\uD83D\uDE80\uD83E\uDDE0 Together, we're building something epic just for you. Stay tuned!",
                 isVisible: visibleSection === "team",
                 setIsVisible: ()=>setVisibleSection(visibleSection === "team" ? false : "team")
             }, void 0, false, {
                 fileName: "src/components/Instamart.js",
-                lineNumber: 24,
+                lineNumber: 31,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Section, {
-                title: "About Instamart Career",
-                description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+                title: "\uD83C\uDFAF Instamart Careers",
+                description: "Wanna join our squad? We're hiring soon! \uD83E\uDD1D\uD83D\uDCBC Whether you're into coding, marketing, or ops \u2014 there's a place for you at Instamart. Let\u2019s build the future together!",
                 isVisible: visibleSection === "career",
                 setIsVisible: ()=>setVisibleSection(visibleSection === "career" ? false : "career")
             }, void 0, false, {
                 fileName: "src/components/Instamart.js",
-                lineNumber: 25,
+                lineNumber: 33,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Instamart.js",
-        lineNumber: 19,
+        lineNumber: 20,
         columnNumber: 10
     }, undefined);
 };

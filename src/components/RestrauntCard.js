@@ -12,9 +12,9 @@ const RestrauntCard = ({
   const { user } = useContext(UserContext);
 
   return (
-    <div className="w-64 h-96 p-4 m-10 shadow-lg bg-white rounded-lg hover:shadow-2xl transition-shadow flex flex-col justify-between">
+    <div className="w-64 h-96 p-4 m-10 bg-white/30 backdrop-blur-md border border-white border-opacity-20 rounded-2xl shadow-lg hover:shadow-2xl transition flex flex-col justify-between">
       <img
-        className="h-40 w-full object-cover rounded-t-lg"
+        className="h-40 w-full object-cover rounded-t-2xl"
         src={IMG_CDN_URL + cloudinaryImageId}
         alt={name}
       />
@@ -30,9 +30,8 @@ const RestrauntCard = ({
           {avgRating} Ratings
         </h4>
       </div>
-      <div className="flex justify-between items-center mt-4 px-2">
-        {/* <h4 className="text-sm font-semibold text-gray-700">{user.name}</h4> This was used for useContext hooks */}
-        <button className=" px-4 py-1 bg-purple-900 text-white rounded-md hover:bg-blue-600 transition">
+      <div className="flex justify-center mt-4 px-2">
+        <button className="px-4 py-1 bg-purple-900 hover:bg-blue-600 text-white rounded-md transition">
           View Details
         </button>
       </div>

@@ -1,55 +1,69 @@
-import { useState } from "react"
-const Section = ({ title, description,isVisible,setIsVisible}) => {
-  return (
-    <div className="border border-black p-2 m-2">
-      <h3 className="font-bold text-xl">{title}</h3>
-      <button
-        className="cursor-pointer underline"
-        onClick={() => setIsVisible(!isVisible)}>
-        {isVisible ? "Hide" : "Show"}
-      </button>
-      {isVisible && <p>{description}</p>}
+import { useState } from "react";
 
+const Section = ({ title, description, isVisible, setIsVisible }) => {
+  return (
+    <div className="border border-black p-4 m-4 rounded-lg shadow-md bg-yellow-50">
+      <h3 className="font-bold text-xl flex items-center gap-2">
+        {title}
+        <button
+          className="text-blue-600 underline ml-auto"
+          onClick={() => setIsVisible(!isVisible)}
+        >
+          {isVisible ? "Hide" : "Show"}
+        </button>
+      </h3>
+      {isVisible && <p className="mt-2 text-gray-700">{description}</p>}
     </div>
   );
 };
 
+const Instamart = () => {
+  const [visibleSection, setVisibleSection] = useState("about");
 
-const Instamart = () =>{
-  const [visibleSection,setVisibleSection] = useState("about")
-  return(
-    <div>
-     <h1 className="text-3xl p-2 m-2 font-bold">Instamart</h1>
-     <Section
-      title = {"About Instamart"}
-      description={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"}
-      isVisible={visibleSection === "about"}
-      setIsVisible = {() => 
-        // setVisibleSection("about") Due to this hide button was not working so below line fix it
-        setVisibleSection(visibleSection === "about" ? false : "about")
-      }
-      
-     > </Section>
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      <h1 className="text-4xl font-extrabold text-center text-orange-600 mb-6">
+        🛒 Instamart - Coming Soon! 🚀
+      </h1>
+
+      <p className="text-center text-gray-600 mb-6">
+        We're working hard to bring Instamart to life. Check out what’s coming 👇
+      </p>
+
       <Section
-      title = {"About Instamart Team"}
-      description={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"}
-      isVisible={visibleSection === "team"}
-      setIsVisible = {() => 
-        setVisibleSection(visibleSection === "team" ? false : "team")
+        title={"📦 About Instamart"}
+        description={
+          "Instamart is your ultra-fast online delivery partner for groceries, essentials, and much more! 🥦🥛🍞 Get ready for a smarter, faster shopping experience. We're gearing up to change the game!"
+        }
+        isVisible={visibleSection === "about"}
+        setIsVisible={() =>
+          setVisibleSection(visibleSection === "about" ? false : "about")
+        }
+      />
 
-      }
-     ></Section>
       <Section
-      title = {"About Instamart Career"}
-      description={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"}
-      isVisible={visibleSection === "career"}
-      setIsVisible = {() => 
-        setVisibleSection(visibleSection === "career" ? false : "career")
+        title={"👨‍💻 Meet the Instamart Team"}
+        description={
+          "Behind the scenes, we’ve got a superhero team of developers, designers, and dreamers! 💻🚀🧠 Together, we're building something epic just for you. Stay tuned!"
+        }
+        isVisible={visibleSection === "team"}
+        setIsVisible={() =>
+          setVisibleSection(visibleSection === "team" ? false : "team")
+        }
+      />
 
-      }
-     ></Section>
+      <Section
+        title={"🎯 Instamart Careers"}
+        description={
+          "Wanna join our squad? We're hiring soon! 🤝💼 Whether you're into coding, marketing, or ops — there's a place for you at Instamart. Let’s build the future together!"
+        }
+        isVisible={visibleSection === "career"}
+        setIsVisible={() =>
+          setVisibleSection(visibleSection === "career" ? false : "career")
+        }
+      />
     </div>
-  )
-}
+  );
+};
 
 export default Instamart;
